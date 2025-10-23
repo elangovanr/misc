@@ -5,6 +5,7 @@ A web-based application that recognizes Tamil handwritten text from images using
 ## Features
 
 - **100% Client-Side Processing** - Images never leave your device
+- **Advanced Image Preprocessing** - Automatic grayscale conversion, contrast enhancement, sharpening, and binarization for improved accuracy
 - **Drag & Drop Upload** - Easy image upload with drag and drop support
 - **Tamil OCR** - Powered by Tesseract.js with Tamil language support
 - **Real-time Progress** - Visual feedback during recognition
@@ -77,6 +78,8 @@ tamil-handwriting-recognition/
 │   │   └── RecognitionResult.jsx
 │   ├── services/        # Business logic
 │   │   └── ocrService.js
+│   ├── utils/           # Utility functions
+│   │   └── imagePreprocessing.js
 │   ├── App.jsx          # Main app component
 │   ├── main.jsx         # Entry point
 │   └── index.css        # Global styles
@@ -101,8 +104,13 @@ Preview the production build locally
 
 1. **Image Upload**: User uploads an image through drag & drop or file picker
 2. **Validation**: File type and size are validated on the client
-3. **OCR Processing**: Tesseract.js processes the image with Tamil language model
-4. **Display Results**: Recognized text is displayed with confidence score
+3. **Image Preprocessing**: Image is automatically enhanced for better OCR accuracy:
+   - Convert to grayscale
+   - Increase contrast
+   - Sharpen image
+   - Binarization (black & white conversion)
+4. **OCR Processing**: Tesseract.js processes the preprocessed image with Tamil language model
+5. **Display Results**: Recognized text is displayed with confidence score
 
 All processing happens in your browser using WebAssembly. No server or API calls are needed!
 
@@ -153,10 +161,25 @@ npm run build
 - Large images may take longer to process
 - Requires internet connection for first load (to download Tesseract.js and language data)
 
+## Tips for Better Accuracy
+
+To get the best OCR results:
+
+1. **Use Good Lighting** - Ensure the handwritten text is well-lit without shadows
+2. **High Contrast** - Dark ink on white paper works best
+3. **Clear Writing** - Neatly written text with adequate spacing
+4. **Good Quality Image** - Use a decent camera or scanner (avoid blurry images)
+5. **Straight Alignment** - Keep the text horizontal and not skewed
+6. **Clean Background** - Remove any background patterns or marks
+7. **Adequate Size** - Text should be large enough to read clearly
+
+The app automatically preprocesses images to improve accuracy, but starting with a good quality image helps significantly!
+
 ## Future Enhancements
 
 - [ ] Batch processing for multiple images
-- [ ] Image preprocessing (filters, contrast adjustment)
+- [x] Image preprocessing (filters, contrast adjustment) - **Implemented!**
+- [ ] Advanced preprocessing with multiple strategies
 - [ ] Support for multiple Indian languages
 - [ ] Text editing capabilities
 - [ ] Export to TXT/PDF formats

@@ -42,7 +42,9 @@ function App() {
         setProgress(prog);
 
         // Format status messages
-        if (stat === 'loading tesseract core') {
+        if (stat === 'preprocessing image') {
+          setStatus('Preprocessing image for better accuracy...');
+        } else if (stat === 'loading tesseract core') {
           setStatus('Loading Tesseract core...');
         } else if (stat === 'initializing tesseract') {
           setStatus('Initializing Tesseract...');
